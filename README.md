@@ -51,38 +51,13 @@ to provide several
 
 Setup involves the following steps:
 
-1.  Clone the repo.
-1.  Configure Python and install dependencies.
+1.  Configure Python.
 1.  Configure credentials for Google Analytics.
 1.  Configure Gemini.
 
-### Clone the repo
-
-```
-git clone https://github.com/googleanalytics/google-analytics-mcp.git
-```
-
 ### Configure Python :snake:
 
-Navigate to the `google-analytics-mcp` directory, then complete the following steps.
-
-1.  Create a Python virtual environment in the `env` directory.
-
-    ```shell
-    python3 -m venv .venv
-    ```
-
-1.  Activate the virtual environment.
-
-    ```shell
-    source .venv/bin/activate
-    ```
-
-1.  Setup the project and its dependencies.
-
-    ```shell
-    pip install .
-    ```
+[Install pipx](https://pipx.pypa.io/stable/#install-pipx).
 
 ### Configure credentials :key:
 
@@ -132,20 +107,17 @@ Here are some sample `gcloud` commands you might find useful:
 1.  Create or edit the file at `~/.gemini/settings.json`, adding your server
     to the `mcpServers` list.
 
-    Replace `PATH_TO_SERVER` with the complete path to the directory where you
-    cloned this repo.
-
     ```
     {
       "mcpServers": {
         "analytics-mcp": {
-          "command": "PATH_TO_SERVER/.venv/bin/python",
+          "command": "pipx",
           "args": [
-            "PATH_TO_SERVER/server.py"
-          ],
-          "env": {
-            "MCP_DEBUG": "true"
-          }
+            "run",
+            "--spec",
+            "git+https://github.com/googleanalytics/google-analytics-mcp.git",
+            "google-analytics-mcp"
+          ]
         }
       },
       "selectedAuthType": "gemini-api-key",
@@ -169,9 +141,12 @@ Here are some sample `gcloud` commands you might find useful:
     {
       "mcpServers": {
         "analytics-mcp": {
-          "command": "PATH_TO_SERVER/.venv/bin/python",
+          "command": "pipx",
           "args": [
-            "PATH_TO_SERVER/server.py"
+            "run",
+            "--spec",
+            "git+https://github.com/googleanalytics/google-analytics-mcp.git",
+            "google-analytics-mcp"
           ],
           "env": {
             "MCP_DEBUG": "true",
