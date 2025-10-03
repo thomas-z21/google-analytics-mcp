@@ -1,0 +1,4 @@
+flask
+gunicorn
+analytics-mcp
+pipx
