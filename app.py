@@ -1,4 +1,8 @@
 import os
+if "GA_KEY_JSON" in os.environ:
+    with open("/app/credentials.json", "w") as f:
+        f.write(os.environ["GA_KEY_JSON"])
+
 from flask import Flask, request, jsonify
 import subprocess
 
